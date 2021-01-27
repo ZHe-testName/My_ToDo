@@ -3,7 +3,7 @@ import TaskListItem from '../task-list-item/';
 
 import './task-list.css';
 
-const TaskList = ({tasksDescription}) => {
+const TaskList = ({tasksDescription, destroyTask}) => {
     const tasksArr = tasksDescription.map(item => {
         const {id, className, ...taskItems} = item;
 
@@ -13,7 +13,9 @@ const TaskList = ({tasksDescription}) => {
   
         return (
             <li key={id} className={className}>
-                <TaskListItem {...taskItems} />
+                <TaskListItem 
+                    {...taskItems}
+                    onDestroy={() => destroyTask(id)}/>
                 {editingInput}
             </li>
         );

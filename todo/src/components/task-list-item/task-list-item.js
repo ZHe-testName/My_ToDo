@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
+
 import './task-list-item.css';
 
-const TaskListItem = ({description = 'No description', create = 'No time'}) => {
-    return (<div className='view'>
+export default class TaskListItem extends Component{
+    render(){
+        const {description, create, onDestroy} = this.props;
+
+        return (
+            <div className='view'>
                 <input  
                     className='toggle'
                     type='checkbox' />
@@ -19,9 +24,9 @@ const TaskListItem = ({description = 'No description', create = 'No time'}) => {
                 </button>
 
                 <button
-                    className='icon icon-destroy'>
+                    className='icon icon-destroy'
+                    onClick={onDestroy}>
                 </button>
             </div>);
+    };
 }; 
-
-export default TaskListItem;
