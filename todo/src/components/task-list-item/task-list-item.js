@@ -4,13 +4,14 @@ import './task-list-item.css';
 
 export default class TaskListItem extends Component{
     render(){
-        const {description, create, onDestroy} = this.props;
+        const {description, create, onDestroy, onCheck} = this.props;
 
         return (
             <div className='view'>
                 <input  
                     className='toggle'
-                    type='checkbox' />
+                    type='checkbox'
+                    onChange={onCheck} />
 
                 <label>
                     <span

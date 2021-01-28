@@ -7,12 +7,29 @@ import Footer from '../footer';
 import './todo-app.css';
 
 export default class ToDoApp extends Component{
+    //completed 
     state = {
         taskData: [
-            {description: 'Complete task', create: 'created 17 min ago', className: 'completed', id: 1},
-            {description: 'Editing task', create: 'created 17 min ago', className: 'editing', id: 2},
-            {description: 'Active task', create: 'created 5 min ago', className: '', id: 3},
+            {description: 'Complete task', create: 'created 17 min ago', className: '', checked: false, id: 1},
+            {description: 'Editing task', create: 'created 17 min ago', className: 'editing', checked: false, id: 2},
+            {description: 'Active task', create: 'created 5 min ago', className: '', checked: false, id: 3},
         ]
+    }  
+    
+    clickOnCheckBox = (id) => {
+        this.setState(({taskData}) => {
+            const newTaskData = taskData.map(item => {
+                if (id === item.id){
+                    item.checked = !item.checked;
+                };
+
+                return item;
+            });
+
+            return {
+                taskData: newTaskData
+            };
+        });
     }
 
     destroyTask = (id) => {
@@ -38,7 +55,8 @@ export default class ToDoApp extends Component{
                 <Header />
                 <Main 
                     tasks={this.state.taskData}
-                    destroyTask={this.destroyTask} />
+                    destroyTask={this.destroyTask}
+                    setStatus={this.clickOnCheckBox} />
                 <Footer />
             </div>
         );
