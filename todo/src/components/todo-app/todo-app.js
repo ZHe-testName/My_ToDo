@@ -71,7 +71,25 @@ export default class ToDoApp extends Component{
         });
     }
 
+    clearCompleted = () => {
+        this.setState(({taskData}) => {
+            const uncompletedArr = taskData.filter(item => !item.checked);
+
+            return {
+                taskData: uncompletedArr
+            };
+        });
+    }
+
+    filterClick = (event) => {
+        console.log(+event.target.id);
+    }
+
     render(){
+        const uncheckedItemsAmmount = this.state.taskData
+                                                        .filter(item => !item.checked)
+                                                        .length
+                                                      
         return (
             <div className='todo-app'>
                 <Header 
@@ -80,7 +98,10 @@ export default class ToDoApp extends Component{
                     tasks={this.state.taskData}
                     destroyTask={this.destroyTask}
                     setStatus={this.clickOnCheckBox} />
-                <Footer />
+                <Footer 
+                        uncheckedAmount={uncheckedItemsAmmount}
+                        clearCompleted={this.clearCompleted}
+                        filterClick={this.filterClick}/>
             </div>
         );
     }

@@ -3,14 +3,17 @@ import React from 'react';
 import Filter from '../footer-flter/';
 import './footer.css';
 
-const Footer = () => {
+const Footer = ({uncheckedAmount, clearCompleted, filterClick}) => {
+    const countText = `${uncheckedAmount} item left`;
     return (
         <footer className='footer'>
-            <span className='todo-count'>1 item left</span>
+            <span className='todo-count'>{countText}</span>
 
-            <Filter />
+            <Filter 
+                    filterClick={filterClick}/>
 
-            <button className='clear-completed'>Clear completed</button>
+            <button className='clear-completed'
+                    onClick={clearCompleted}>Clear completed</button>
         </footer>
     );
 };
