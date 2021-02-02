@@ -1,23 +1,23 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import './footer-filter.css';
 
-const Filter = () => {
-    return (
-        <ul className='filters'>
-            <li>
-                <button  className='selected'>All</button>
-            </li>
+export default class Filter extends Component {
+   render(){
+        return (
+            <ul className='filters'>
+                <li>
+                    <button  className='selected'>All</button>
+                </li>
 
-            <li>
-                <button>Active</button>
-            </li>
+                <li>
+                    <button>Active</button>
+                </li>
 
-            <li>
-                <button>Completed</button>
-            </li>
-        </ul>
-    );
+                <li>
+                    <button>Completed</button>
+                </li>
+            </ul>
+        );
+   }
 };
-
-export default Filter;

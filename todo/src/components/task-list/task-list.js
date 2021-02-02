@@ -16,7 +16,7 @@ const TaskList = ({tasksDescription, destroyTask, setStatus}) => {
             if (checked){
                 className += ' completed';
             };
-      
+
             return (
                 <li key={id} className={className}>
                     <TaskListItem 

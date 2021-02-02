@@ -7,7 +7,8 @@ import Footer from '../footer';
 import './todo-app.css';
 
 export default class ToDoApp extends Component{
-    //completed 
+    minId = 100;
+
     state = {
         taskData: [
             {description: 'Complete task', create: 'created 17 min ago', className: '', checked: false, id: 1},
@@ -32,6 +33,27 @@ export default class ToDoApp extends Component{
         });
     }
 
+    createTask = (text) => {
+        const newItem = {
+            description: text,
+            create: 'created 5 min ago',
+            className: '',
+            checked: false,
+            id: this.minId++
+        };
+
+        this.setState(({taskData}) => {
+            const newTaskArr = [
+                ...taskData,
+                newItem
+            ];
+
+            return {
+                taskData: newTaskArr
+            }
+        });
+    }
+
     destroyTask = (id) => {
         this.setState(({taskData}) => {
             // const deleteItemIndex = taskData.findIndex(item => item.id === id);
@@ -52,7 +74,8 @@ export default class ToDoApp extends Component{
     render(){
         return (
             <div className='todo-app'>
-                <Header />
+                <Header 
+                    onCreateTask={this.createTask}/>
                 <Main 
                     tasks={this.state.taskData}
                     destroyTask={this.destroyTask}
