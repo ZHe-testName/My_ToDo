@@ -96,24 +96,41 @@ export default class ToDoApp extends Component{
             return elem;
         });
 
-        this.setState(({filterButtons}) => {
+        this.setState(() => {
             return {
                 filterButtons: newButtonsArr
             };
         });
     }
 
+    filterItems = (buttonsArr) => {
+        const idOfSelectedFilter = buttonsArr.filter(el => el.className)[0].id;
+
+        if (idOfSelectedFilter === 1) return this.state.taskData;
+
+        if (idOfSelectedFilter === 2) {
+            return this.state.taskData.filter(elem => !elem.checked);
+        };
+
+        if (idOfSelectedFilter === 3) {
+            return this.state.taskData.filter(elem => elem.checked);
+        };
+    }
+
     render(){
         const uncheckedItemsAmmount = this.state.taskData
                                                         .filter(item => !item.checked)
                                                         .length;
-                                                      
+
+        const filteredItemsArr = this.filterItems(this.state.filterButtons)
+
+                                                        
         return (
             <div className='todo-app'>
                 <Header 
                     onCreateTask={this.createTask}/>
                 <Main 
-                    tasks={this.state.taskData}
+                    tasks={filteredItemsArr}
                     destroyTask={this.destroyTask}
                     setStatus={this.clickOnCheckBox} />
                 <Footer 

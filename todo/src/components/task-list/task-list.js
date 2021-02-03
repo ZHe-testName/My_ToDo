@@ -12,7 +12,7 @@ const TaskList = ({tasksDescription, destroyTask, setStatus}) => {
             const editingInput = (className === 'editing') ? 
                 <input className='edit' type='text' defaultValue='Editing task'></input> : 
                 void 0;
-
+console.log(item);
             if (checked){
                 className += ' completed';
             };
