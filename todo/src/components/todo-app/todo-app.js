@@ -14,6 +14,12 @@ export default class ToDoApp extends Component{
             {description: 'Complete task', create: 'created 17 min ago', className: '', checked: false, id: 1},
             {description: 'Editing task', create: 'created 17 min ago', className: 'editing', checked: false, id: 2},
             {description: 'Active task', create: 'created 5 min ago', className: '', checked: false, id: 3},
+        ],
+
+        filterButtons: [
+            {description: 'All', className: 'selected', id: 1},
+            {description: 'Active', className: '', id: 2},
+            {description: 'Complete', className: '', id: 3}
         ]
     }  
     
@@ -82,13 +88,25 @@ export default class ToDoApp extends Component{
     }
 
     filterClick = (event) => {
-        console.log(+event.target.id);
+        const newButtonsArr = this.state.filterButtons.map(elem => {
+            const className = (elem.id === +event.target.id) ? 'selected' : '';
+
+            elem.className = className;
+
+            return elem;
+        });
+
+        this.setState(({filterButtons}) => {
+            return {
+                filterButtons: newButtonsArr
+            };
+        });
     }
 
     render(){
         const uncheckedItemsAmmount = this.state.taskData
                                                         .filter(item => !item.checked)
-                                                        .length
+                                                        .length;
                                                       
         return (
             <div className='todo-app'>
@@ -101,7 +119,8 @@ export default class ToDoApp extends Component{
                 <Footer 
                         uncheckedAmount={uncheckedItemsAmmount}
                         clearCompleted={this.clearCompleted}
-                        filterClick={this.filterClick}/>
+                        filterClick={this.filterClick}
+                        filterButtons={this.state.filterButtons}/>
             </div>
         );
     }

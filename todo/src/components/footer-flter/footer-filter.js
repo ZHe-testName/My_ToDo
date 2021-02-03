@@ -7,32 +7,22 @@ export default class Filter extends Component {
         this.props.filterClick(event);
     }
 
-    setSelect = (event) => {
-        event.target.className = 'selected';
-    }
-    //selected
-
     render(){
+        const buttonsArr = this.props.filterButtons.map(elem => {
+            const {id, description, className} = elem;
+
+            return(
+                <li key={id}>
+                    <button id={id}
+                            className={className}>{description}</button>
+                </li>
+            );
+        });
+
         return (
             <ul className='filters'
-                                    onClick={this.clickOnFilter}>
-                <li>
-                    <button id='1'
-                            className=''
-                            onClick={this.setSelect}>All</button>
-                </li>
-
-                <li>
-                    <button id='2'
-                            className=''
-                            onClick={this.setSelect}>Active</button>
-                </li>
-
-                <li>
-                    <button id='3'
-                            className=''
-                            onClick={this.setSelect}>Completed</button>
-                </li>
+                onClick={this.clickOnFilter}>
+                    {buttonsArr}
             </ul>
         );
     }
