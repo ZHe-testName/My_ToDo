@@ -5,15 +5,15 @@ import './task-list.css';
 
 const TaskList = ({tasksDescription, destroyTask, setStatus}) => {
         const tasksArr = tasksDescription.map(item => {
-            const {id, checked, ...taskItems} = item;
+            const {id, ...taskItems} = item;
 
             let {className} = item;
     
             const editingInput = (className === 'editing') ? 
                 <input className='edit' type='text' defaultValue='Editing task'></input> : 
                 void 0;
-console.log(item);
-            if (checked){
+
+            if (taskItems.checked){
                 className += ' completed';
             };
 
