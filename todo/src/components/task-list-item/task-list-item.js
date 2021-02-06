@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import {formatDistanceToNow} from 'date-fns';
 
 import './task-list-item.css';
 
 export default class TaskListItem extends Component{
     render(){
         const {description, create, onDestroy, onCheck, checked} = this.props;
+
+        const timeFromCreation = formatDistanceToNow(create, {includeSeconds: true});
 
         return (
             <div className='view'>
@@ -24,7 +27,7 @@ export default class TaskListItem extends Component{
                     <span
                         className='description'>{description}</span>
                     <span
-                        className='created'>{create}</span>
+                        className='created'>{timeFromCreation}</span>
                 </label>
 
                 <button

@@ -5,6 +5,7 @@ import './footer.css';
 
 const Footer = ({uncheckedAmount, clearCompleted, filterClick, filterButtons}) => {
     const countText = `${uncheckedAmount} item left`;
+    
     return (
         <footer className='footer'>
             <span className='todo-count'>{countText}</span>

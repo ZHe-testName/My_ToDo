@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import TaskListItem from '../task-list-item/';
 
 import './task-list.css';
@@ -33,6 +35,18 @@ const TaskList = ({tasksDescription, destroyTask, setStatus}) => {
                 {tasksArr}
             </ul>
         );
+};
+
+TaskList.defaultProps = {
+    tasksDescription: [],
+    destroyTask: () => {},
+    setStatus: () => {}
+};
+
+TaskList.propTypes = {
+    tasksDescription: PropTypes.arrayOf(PropTypes.object),
+    destroyTask: PropTypes.func,
+    setStatus: PropTypes.func
 };
 
 export default TaskList;

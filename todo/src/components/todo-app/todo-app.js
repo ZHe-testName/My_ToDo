@@ -11,9 +11,9 @@ export default class ToDoApp extends Component{
 
     state = {
         taskData: [
-            {description: 'Complete task', create: 'created 17 min ago', className: '', checked: false, id: 1},
-            {description: 'Editing task', create: 'created 17 min ago', className: 'editing', checked: false, id: 2},
-            {description: 'Active task', create: 'created 5 min ago', className: '', checked: false, id: 3},
+            // {description: 'Complete task', create: 'created 17 min ago', className: '', checked: false, id: 1},
+            // {description: 'Editing task', create: 'created 17 min ago', className: 'editing', checked: false, id: 2},
+            // {description: 'Active task', create: 'created 5 min ago', className: '', checked: false, id: 3},
         ],
 
         filterButtons: [
@@ -42,7 +42,7 @@ export default class ToDoApp extends Component{
     createTask = (text) => {
         const newItem = {
             description: text,
-            create: 'created 5 min ago',
+            create: Date.now(),
             className: '',
             checked: false,
             id: this.minId++
