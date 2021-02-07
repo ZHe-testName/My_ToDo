@@ -5,7 +5,7 @@ import './task-list-item.css';
 
 export default class TaskListItem extends Component{
     render(){
-        const {description, create, onDestroy, onCheck, checked} = this.props;
+        const {description, create, onDestroy, onCheck, checked, clickOnEdit} = this.props;
 
         const timeFromCreation = formatDistanceToNow(create, {includeSeconds: true});
 
@@ -31,7 +31,8 @@ export default class TaskListItem extends Component{
                 </label>
 
                 <button
-                    className='icon icon-edit'>
+                    className='icon icon-edit'
+                    onClick={clickOnEdit}>
                 </button>
 
                 <button

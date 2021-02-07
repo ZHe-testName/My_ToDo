@@ -106,7 +106,9 @@ export default class ToDoApp extends Component{
     filterItems = (buttonsArr) => {
         const idOfSelectedFilter = buttonsArr.filter(el => el.className)[0].id;
 
-        if (idOfSelectedFilter === 1) return this.state.taskData;
+        if (idOfSelectedFilter === 1) {
+            return this.state.taskData
+        };
 
         if (idOfSelectedFilter === 2) {
             return this.state.taskData.filter(elem => !elem.checked);
@@ -115,6 +117,40 @@ export default class ToDoApp extends Component{
         if (idOfSelectedFilter === 3) {
             return this.state.taskData.filter(elem => elem.checked);
         };
+    }
+
+    clickOnEdit = (id) => {
+        this.setState(({taskData}) => {
+            const newTaskData = taskData.map(item => {
+                if (id === item.id){
+                    item.className = 'editing';
+                };
+
+                return item;
+            });
+
+            return {
+                taskData: newTaskData
+            };
+        });
+    }
+
+    setNewTaskDescription = (newValue, id) => {
+        this.setState(({taskData}) => {
+            const newTaskData = taskData.map(item => {
+                if (+id === item.id){
+                    item.className = '';
+
+                    item.description = newValue;
+                };
+
+                return item;
+            });
+
+            return {
+                taskData: newTaskData
+            };
+        });
     }
 
     render(){
@@ -132,7 +168,9 @@ export default class ToDoApp extends Component{
                 <Main 
                     tasks={filteredItemsArr}
                     destroyTask={this.destroyTask}
-                    setStatus={this.clickOnCheckBox} />
+                    setStatus={this.clickOnCheckBox}
+                    clickOnEdit={this.clickOnEdit}
+                    setNewTaskDescription={this.setNewTaskDescription} />
                 <Footer 
                         uncheckedAmount={uncheckedItemsAmmount}
                         clearCompleted={this.clearCompleted}
