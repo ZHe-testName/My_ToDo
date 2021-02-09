@@ -104,21 +104,22 @@ export default class ToDoApp extends Component{
     filterItems = (buttonsArr) => {
         const idOfSelectedFilter = buttonsArr.filter(el => el.className)[0].id;
 
-        let newArr;
+        //  переменная для линтера    
+        //  let newArr;  
 
         if (idOfSelectedFilter === 1) {
-            newArr = this.state.taskData;
+            return this.state.taskData;
         };
 
         if (idOfSelectedFilter === 2) {
-            newArr = this.state.taskData.filter(elem => !elem.checked);
+            return this.state.taskData.filter(elem => !elem.checked);
         };
 
         if (idOfSelectedFilter === 3) {
-            newArr = this.state.taskData.filter(elem => elem.checked);
+            return this.state.taskData.filter(elem => elem.checked);
         };
 
-        return newArr;
+        //  return newArr;   
     }
 
     clickOnEdit = (id) => {
