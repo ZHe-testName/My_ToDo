@@ -26,11 +26,13 @@ export default class ToDoApp extends Component{
     clickOnCheckBox = (id) => {
         this.setState(({taskData}) => {
             const newTaskData = taskData.map(item => {
-                if (id === item.id){
-                    item.checked = !item.checked;
+                const newItem = item;
+
+                if (id === newItem.id){
+                    newItem.checked = !newItem.checked;
                 };
 
-                return item;
+                return newItem;
             });
 
             return {
@@ -88,48 +90,53 @@ export default class ToDoApp extends Component{
     }
 
     filterClick = (event) => {
-        const newButtonsArr = this.state.filterButtons.map(elem => {
-            const className = (elem.id === +event.target.id) ? 'selected' : '';
+        const {filterButtons} = this.state;
 
-            elem.className = className;
+        const newButtonsArr = filterButtons.map(elem => {
+            const newElem = elem;
 
-            return elem;
+            const className = (newElem.id === +event.target.id) ? 'selected' : '';
+
+            newElem.className = className;
+
+            return newElem;
         });
 
         this.setState(() => ({
                 filterButtons: newButtonsArr
-            }));
+        }));
     }
 
     filterItems = (buttonsArr) => {
         const idOfSelectedFilter = buttonsArr.filter(el => el.className)[0].id;
 
-        //  переменная для линтера    
-        //  let newArr;  
+        const {taskData} = this.state;
 
         if (idOfSelectedFilter === 1) {
-            return this.state.taskData;
+            return taskData;
         };
 
         if (idOfSelectedFilter === 2) {
-            return this.state.taskData.filter(elem => !elem.checked);
+            return taskData.filter(elem => !elem.checked);
         };
 
         if (idOfSelectedFilter === 3) {
-            return this.state.taskData.filter(elem => elem.checked);
+            return taskData.filter(elem => elem.checked);
         };
 
-        //  return newArr;   
+        return undefined;
     }
 
     clickOnEdit = (id) => {
         this.setState(({taskData}) => {
-            const newTaskData = [...taskData].map(item => {
-                if (id === item.id){
-                    item.className = 'editing';
+            const newTaskData = taskData.map(item => {
+                const newItem = item;
+
+                if (id === newItem.id){
+                    newItem.className = 'editing';
                 };
 
-                return item;
+                return newItem;
             });
 
             return {
@@ -141,13 +148,15 @@ export default class ToDoApp extends Component{
     setNewTaskDescription = (newValue, id) => {
         this.setState(({taskData}) => {
             const newTaskData = taskData.map(item => {
-                if (+id === item.id){
-                    item.className = '';
+                const newItem = item;
 
-                    item.description = newValue;
+                if (+id === newItem.id){
+                    newItem.className = '';
+
+                    newItem.description = newValue;
                 };
 
-                return item;
+                return newItem;
             });
 
             return {
@@ -157,11 +166,13 @@ export default class ToDoApp extends Component{
     }
 
     render(){
-        const uncheckedItemsAmmount = this.state.taskData
-                                                        .filter(item => !item.checked)
-                                                        .length;
+        const {taskData, filterButtons} = this.state;
 
-        const filteredItemsArr = this.filterItems(this.state.filterButtons)
+        const uncheckedItemsAmmount = taskData
+                                                .filter(item => !item.checked)
+                                                .length;
+
+        const filteredItemsArr = this.filterItems(filterButtons);
 
                                                         
         return (
@@ -178,7 +189,7 @@ export default class ToDoApp extends Component{
                         uncheckedAmount={uncheckedItemsAmmount}
                         clearCompleted={this.clearCompleted}
                         filterClick={this.filterClick}
-                        filterButtons={this.state.filterButtons}/>
+                        filterButtons={filterButtons}/>
             </div>
         );
     }

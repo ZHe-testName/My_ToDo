@@ -8,7 +8,7 @@ export default class TaskListItem extends Component{
         const {description, create, onDestroy, onCheck, checked, clickOnEdit} = this.props;
 
         const timeFromCreation = formatDistanceToNow(create, {includeSeconds: true});
-
+        
         return (
             <div className='view'>
                 <input  

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import PropTypes from 'prop-types';
 
 import TaskListItem from "../task-list-item";
@@ -10,21 +9,26 @@ export default class TaskList extends Component {
     static defaultProps = {
         tasksDescription: [],
         destroyTask: () => {},
-        setStatus: () => {}
+        setStatus: () => {},
+        setNewTaskDescription: () => {},
+        clickOnEdit: () => {},
     };
     
     static propTypes = {
         tasksDescription: PropTypes.arrayOf(PropTypes.object),
         destroyTask: PropTypes.func,
-        setStatus: PropTypes.func
+        setStatus: PropTypes.func,
+        setNewTaskDescription: PropTypes.func,
+        clickOnEdit: PropTypes.func,
     };
 
     onEnterHandler = (event) => {
         if (event.keyCode === 13){
             const {id} = event.target.parentNode;
             const val = event.target.value;
+            const {setNewTaskDescription} = this.props;
 
-            this.props.setNewTaskDescription(val, id);
+            setNewTaskDescription(val, id);
         };
     }
 
