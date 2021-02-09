@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import Header from '../header/';
-import Main from '../main/';
+import Header from "../header";
+import Main from "../main";
 import Footer from '../footer';
 
 import './todo-app.css';
@@ -45,7 +45,7 @@ export default class ToDoApp extends Component{
             create: Date.now(),
             className: '',
             checked: false,
-            id: this.minId++
+            id: this.minId += 1,
         };
 
         this.setState(({taskData}) => {
@@ -96,32 +96,34 @@ export default class ToDoApp extends Component{
             return elem;
         });
 
-        this.setState(() => {
-            return {
+        this.setState(() => ({
                 filterButtons: newButtonsArr
-            };
-        });
+            }));
     }
 
     filterItems = (buttonsArr) => {
         const idOfSelectedFilter = buttonsArr.filter(el => el.className)[0].id;
 
+        let newArr;
+
         if (idOfSelectedFilter === 1) {
-            return this.state.taskData
+            newArr = this.state.taskData;
         };
 
         if (idOfSelectedFilter === 2) {
-            return this.state.taskData.filter(elem => !elem.checked);
+            newArr = this.state.taskData.filter(elem => !elem.checked);
         };
 
         if (idOfSelectedFilter === 3) {
-            return this.state.taskData.filter(elem => elem.checked);
+            newArr = this.state.taskData.filter(elem => elem.checked);
         };
+
+        return newArr;
     }
 
     clickOnEdit = (id) => {
         this.setState(({taskData}) => {
-            const newTaskData = taskData.map(item => {
+            const newTaskData = [...taskData].map(item => {
                 if (id === item.id){
                     item.className = 'editing';
                 };

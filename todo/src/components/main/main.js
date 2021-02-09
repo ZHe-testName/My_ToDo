@@ -1,10 +1,9 @@
 import React from 'react';
-import TaskList from '../task-list/';
+import TaskList from "../task-list";
 
 import './main.css';
 
-const Main  = ({tasks, destroyTask, setStatus, clickOnEdit, setNewTaskDescription}) => {
-    return (
+const Main  = ({tasks, destroyTask, setStatus, clickOnEdit, setNewTaskDescription}) => (
         <main className='main'>
             <TaskList 
                 tasksDescription={tasks}
@@ -14,6 +13,5 @@ const Main  = ({tasks, destroyTask, setStatus, clickOnEdit, setNewTaskDescriptio
                 setNewTaskDescription={setNewTaskDescription} />
         </main>
     );
-};
 
 export default Main;

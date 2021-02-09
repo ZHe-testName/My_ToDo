@@ -14,6 +14,7 @@ export default class Filter extends Component {
             return(
                 <li key={id}>
                     <button id={id}
+                            type='button'
                             className={className}>{description}</button>
                 </li>
             );

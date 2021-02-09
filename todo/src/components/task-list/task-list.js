@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import PropTypes from 'prop-types';
 
-import TaskListItem from '../task-list-item/';
+import TaskListItem from "../task-list-item";
 
 import './task-list.css';
 
@@ -21,7 +21,7 @@ export default class TaskList extends Component {
 
     onEnterHandler = (event) => {
         if (event.keyCode === 13){
-            const id = event.target.parentNode.id;
+            const {id} = event.target.parentNode;
             const val = event.target.value;
 
             this.props.setNewTaskDescription(val, id);
@@ -42,8 +42,8 @@ export default class TaskList extends Component {
                     className='edit' 
                     type='text' 
                     placeholder='Editing task'
-                    onKeyDown={this.onEnterHandler}></input> : 
-                void 0;
+                    onKeyDown={this.onEnterHandler} /> : 
+                undefined;
 
             if (taskItems.checked){
                 className += ' completed';

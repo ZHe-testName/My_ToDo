@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Filter from '../footer-flter/';
+import Filter from "../footer-flter";
 import './footer.css';
 
 const Footer = ({uncheckedAmount, clearCompleted, filterClick, filterButtons}) => {
@@ -15,6 +15,7 @@ const Footer = ({uncheckedAmount, clearCompleted, filterClick, filterButtons}) =
                     filterButtons={filterButtons}/>
 
             <button className='clear-completed'
+                    type='button'
                     onClick={clearCompleted}>Clear completed</button>
         </footer>
     );

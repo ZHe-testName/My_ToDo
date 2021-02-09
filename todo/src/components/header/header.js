@@ -1,11 +1,10 @@
 import React from 'react';
 
-import NewTaskForm from '../new-task-form/';
+import NewTaskForm from "../new-task-form";
 
 import './header.css';
 
-const Header = ({onCreateTask}) => {
-    return (
+const Header = ({onCreateTask}) => (
         <header className='header'>
             <h1>todos</h1>
 
@@ -14,6 +13,5 @@ const Header = ({onCreateTask}) => {
 
         </header>
     );
-};
 
 export default Header;

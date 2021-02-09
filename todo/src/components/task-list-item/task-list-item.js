@@ -15,12 +15,12 @@ export default class TaskListItem extends Component{
                     className='toggle'
                     type='checkbox'
                     onChange={onCheck}
-                    //свойство передается сответственно актуального стейта в ручную
-                    //для исправления бага с галочкой compleated
-                    //при фильтрации заданий
+                    // свойство передается сответственно актуального стейта в ручную
+                    // для исправления бага с галочкой compleated
+                    // при фильтрации заданий
                     
-                    //баг возник из-за своеобразного присвоения css стилей
-                    //думаю есть вариант пофиксить через css
+                    // баг возник из-за своеобразного присвоения css стилей
+                    // думаю есть вариант пофиксить через css
                     checked={checked} />
 
                 <label>
@@ -31,14 +31,14 @@ export default class TaskListItem extends Component{
                 </label>
 
                 <button
+                    type='button'
                     className='icon icon-edit'
-                    onClick={clickOnEdit}>
-                </button>
+                    onClick={clickOnEdit} />
 
                 <button
+                    type='button'
                     className='icon icon-destroy'
-                    onClick={onDestroy}>
-                </button>
+                    onClick={onDestroy} />
             </div>);
     };
 }; 
