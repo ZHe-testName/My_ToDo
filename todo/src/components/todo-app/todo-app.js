@@ -22,6 +22,9 @@ export default class ToDoApp extends Component{
             {description: 'Complete', className: '', id: 3}
         ]
     }  
+
+    // Спросить нормальное ли решение
+    cloneObject = (obj) => JSON.parse(JSON.stringify(obj));
     
     clickOnCheckBox = (id) => {
         this.setState(({taskData}) => {
@@ -93,7 +96,7 @@ export default class ToDoApp extends Component{
         const {filterButtons} = this.state;
 
         const newButtonsArr = filterButtons.map(elem => {
-            const newElem = elem;
+            const newElem = this.cloneObject(elem);
 
             const className = (newElem.id === +event.target.id) ? 'selected' : '';
 
@@ -130,7 +133,7 @@ export default class ToDoApp extends Component{
     clickOnEdit = (id) => {
         this.setState(({taskData}) => {
             const newTaskData = taskData.map(item => {
-                const newItem = item;
+                const newItem = this.cloneObject(item);
 
                 if (id === newItem.id){
                     newItem.className = 'editing';
@@ -148,7 +151,7 @@ export default class ToDoApp extends Component{
     setNewTaskDescription = (newValue, id) => {
         this.setState(({taskData}) => {
             const newTaskData = taskData.map(item => {
-                const newItem = item;
+                const newItem = this.cloneObject(item);
 
                 if (+id === newItem.id){
                     newItem.className = '';
