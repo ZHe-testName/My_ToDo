@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Filter from "../footer-flter";
 import './footer.css';
@@ -19,6 +20,20 @@ const Footer = ({uncheckedAmount, clearCompleted, filterClick, filterButtons}) =
                     onClick={clearCompleted}>Clear completed</button>
         </footer>
     );
+};
+
+Footer.defaultProps = {
+    uncheckedAmount: 0,
+    clearCompleted: () => {},
+    filterClick: () => {},
+    filterButtons: [],
+};
+
+Footer.propTypes = {
+    uncheckedAmount: PropTypes.number,
+    clearCompleted: PropTypes.func,
+    filterClick: PropTypes.func,
+    filterButtons: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Footer;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import NewTaskForm from "../new-task-form";
 
@@ -12,6 +13,14 @@ const Header = ({onCreateTask}) => (
                 onCreateItem={onCreateTask}/>
 
         </header>
-    );
+);
+
+Header.propTypes = {
+    onCreateTask: PropTypes.func,
+};
+
+Header.defaultProps = {
+    onCreateTask: () => {},
+};
 
 export default Header;

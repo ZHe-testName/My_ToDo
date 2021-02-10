@@ -33,7 +33,6 @@
       "react/state-in-constructor": ["off"],
       "react/jsx-props-no-spreading": ["off"],
       "react/prefer-stateless-function": "warn",
-      "react/prop-types": "warn",
       "react/destructuring-assignment": "warn",
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "react/static-property-placement": "off"
