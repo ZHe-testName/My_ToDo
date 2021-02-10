@@ -13,15 +13,14 @@ export default class Filter extends Component {
         filterClick: PropTypes.func,
         filterButtons: PropTypes.arrayOf(PropTypes.object),
     }
-    
-    clickOnFilter = (event) => {
-        const {filterClick} = this.props;
 
-        filterClick(event);
+    constructor(props){
+        super(props);
+        this.props = props;
     }
 
     render(){
-        const {filterButtons} = this.props;
+        const {filterButtons, filterClick} = this.props;
 
         const buttonsArr = filterButtons.map(elem => {
             const {id, description, className} = elem;
@@ -30,14 +29,14 @@ export default class Filter extends Component {
                 <li key={id}>
                     <button id={id}
                             type='button'
-                            className={className}>{description}</button>
+                            className={className}
+                            onClick={() => {filterClick(id)}}>{description}</button>
                 </li>
             );
         });
 
         return (
-            <ul className='filters'
-                onClick={this.clickOnFilter}>
+            <ul className='filters'>
                     {buttonsArr}
             </ul>
         );

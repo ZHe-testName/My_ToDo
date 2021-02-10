@@ -45,8 +45,7 @@ export default class NewTaskForm extends Component {
                 <input className='new-todo' 
                         placeholder='What needs to be done?'
                         onChange={this.onInputChange}
-                        value={inputVale} 
-                        autoFocus />
+                        value={inputVale} />
 
             </form>
         );

@@ -92,13 +92,13 @@ export default class ToDoApp extends Component{
         });
     }
 
-    filterClick = (event) => {
+    filterClick = (id) => {
         const {filterButtons} = this.state;
 
         const newButtonsArr = filterButtons.map(elem => {
             const newElem = this.cloneObject(elem);
 
-            const className = (newElem.id === +event.target.id) ? 'selected' : '';
+            const className = (newElem.id === id) ? 'selected' : '';
 
             newElem.className = className;
 

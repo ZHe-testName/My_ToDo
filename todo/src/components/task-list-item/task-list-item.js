@@ -23,6 +23,12 @@ export default class TaskListItem extends Component{
         clickOnEdit: PropTypes.func,
     }
 
+    // не уверен что так правильно
+    constructor(props){
+        super(props);
+        this.props = props;
+    }
+
     render(){
         const {description, create, onDestroy, onCheck, checked, clickOnEdit} = this.props;
 
