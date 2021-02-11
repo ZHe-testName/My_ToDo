@@ -2,6 +2,7 @@
 
 # dependencies
 todo/node_modules
+todo/.eslintcache
 /.pnp
 .pnp.js
 
